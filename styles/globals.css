@@ -28,3 +28,8 @@ a {
 .container {
   padding: 0 2rem;
 }
+
+p {
+  color: firebrick;
+  font-weight: bold;
+}
