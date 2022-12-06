@@ -1,16 +1,16 @@
 import { PrismaClient, Company, Prisma } from '@prisma/client'
 import { useState } from 'react'
 import AddCompanyForm from '../components/contact/addCompanyForm'
-//import CompanyCard from '../components/contact/contactCard'
+import CompanyCard from '../components/contact/companyCard'
 
 const prisma = new PrismaClient()
 
 export async function getServerSideProps() {
-  const companys: Company[] = await prisma.contact.findMany()
-
+  const companys: Company[] = await prisma.company.findMany()
+  //console.log(JSON.stringify(companys));
   return {
     props: {
-      initialCompanys: companys
+      initialCompanys: JSON.stringify(companys)
     }
   }
 }
@@ -55,9 +55,9 @@ export default function Companys({ initialCompanys }) {
           <div className="mb-3">
             <h2 className="text-3xl text-gray-700">Companys</h2>
           </div>
-          {contacts.map((c, i: number) => (
+          {companys.map((c, i: number) => (
             <div className='mb-3' key={i}>
-              <CompanyCard contact={c} />
+              <CompanyCard company={c} />
             </div>
           ))}
         </section> */}

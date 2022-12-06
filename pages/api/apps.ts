@@ -12,10 +12,10 @@ export default async (
   }
 
   try {
-    const company: Prisma.CompanyCreateInput = JSON.parse(req.body);
-    const savedCompany = await prisma.company.create({ data: company });
-    res.status(200).json(savedCompany);
+    const app: Prisma.AppCreateInput = JSON.parse(req.body);
+    const savedApp = await prisma.app.create({ data: app });
+    res.status(200).json(savedApp);
   } catch (err) {
-    res.status(400).json({message: err + 'Something went wrong'})
+    res.status(400).json({message: 'Something went wrong'})
   }
 }

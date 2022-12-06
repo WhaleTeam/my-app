@@ -57,6 +57,30 @@ export default function AddCompanyForm(props: AddCompanyFormProps){
       </InputSpacer>
       <InputSpacer>
         <Input
+          placeholder='App'
+          name="appId"
+          formRef={register('appId', {required: true})}
+        />
+        {
+          errors.appId && (
+            <FormError errorMessage='AppId is required' />
+          )
+        }
+      </InputSpacer>
+      <InputSpacer>
+        <Input
+          placeholder='Date Register'
+          name="companyRegisterDate"
+          formRef={register('companyRegisterDate', {required: true})}
+        />
+        {
+          errors.companyRegisterDate && (
+            <FormError errorMessage='Date is required' />
+          )
+        }
+      </InputSpacer>
+      <InputSpacer>
+        <Input
           placeholder='Company Detail'
           name="companyDescription"
           formRef={register('companyDescription', {required: false})}
