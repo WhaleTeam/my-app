@@ -17,4 +17,15 @@ model Contact {
   email     String
   phone     String
   avatar    String @default("")
+  tasks     Task[]
+}
+
+
+model Task {
+  id        String @id @default(cuid())
+  Title     String
+  startDate DateTime
+  endDate   DateTime
+  user      Contact @relation(fields: [userId], references: [id])
+  userId    String
 }
