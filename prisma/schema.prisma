@@ -11,10 +11,65 @@ datasource db {
 }
 
 model Contact {
-  id String @id @default(cuid())
-  firstName String
-  lastName  String
-  email     String
-  phone     String
-  avatar    String @default("")
+  id                    String @id @default(cuid())
+  firstName             String
+  lastName              String
+  email                 String
+  phone                 String
+  avatar                String @default("")
+  company               Company @relation(fields: [companyId], references: [id])
+  companyId             String
+  tasks                 Task[]
+  scheduleTasks         ScheduleTask[]
+} 
+
+model App {
+  id                    String @id @default(cuid())
+  appName               String
+  appDescription        String
+  appPlatform           String
+  appVersion            String
+  companys              Company[]
+}
+
+model Company {
+  id                    String @id @default(cuid())
+  companyName           String
+  companyAddress        String
+  companyPhone          String
+  companyDescription    String
+  companyRegisterDate   DateTime
+  app                   App @relation(fields: [appId], references: [id])
+  appId                 String
+  contacs               Contact[]
+}
+
+model Task {
+  id                    String @id @default(cuid())
+  title                 String
+  startDate             DateTime
+  endDate               DateTime
+  user                  Contact @relation(fields: [userId], references: [id])
+  userId                String
+}
+
+model ScheduleTask {
+  id                    String @id @default(cuid())
+  title                 String
+  startDate             DateTime
+  endDate               DateTime
+  timelapse             Int
+  timelapseMeasurement  String
+  timelapseRetry        Int
+  user                  Contact @relation(fields: [userId], references: [id])
+  userId                String
+  scheduleLogs          ScheduleLogs[]
+}
+
+model ScheduleLogs {
+  id                    String @id @default(cuid())
+  title                 String
+  result                String
+  task                  ScheduleTask @relation(fields: [taskId], references: [id])
+  taskId                String
 }
