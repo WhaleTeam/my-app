@@ -1,35 +1,63 @@
 import { Company } from '@prisma/client'
-import Image from 'next/image'
+import { Group, Text, ActionIcon, Menu } from '@mantine/core';
+import {
+  IconPencil,
+  IconMessages,
+  IconNote,
+  IconReportAnalytics,
+  IconTrash,
+  IconDots,
+} from '@tabler/icons';
+
+interface UsersStackProps {
+  data: { companyName: string; companyAddress: string; companyPhone: string; companyRegisterDate: string }[];
+}
 
 interface CompanyCardProps {
   company: Company
 }
 
-/* const Avatar = (avatar: string) => {
-  if (avatar !== "")
-    return avatar
-  return "/vercel.svg"
-} */
-
 export default function CompanyCard(props: CompanyCardProps) {
+
   return (
-    <div className='border rounded-lg p-4 flex'>
-      {/* <div className='my-auto'>
-        <Image
-          src={Avatar(props.company.avatar)}
-          alt="Avatar"
-          width={40}
-          height={40}
-          className="rounded-full"
-        />
-      </div> */}
-      <div className='ml-4'>
-        <p className='text-xl text-gray-700'>
-          {props.company.companyName}
-        </p>
-        <p className='text-gray-500'>{props.company.companyAddress} ({props.company.companyPhone})</p>
-        <p className='text-gray-500'>{props.company.companyRegisterDate}</p>
-      </div>
-    </div>
-  )
+    <>
+            <td>
+              <Group spacing="sm">
+                <div>
+                  <Text size="sm" weight={500}>
+                    {props.company.companyName}
+                  </Text>
+                  <Text color="dimmed" size="xs">
+                    {props.company.companyAddress}
+                  </Text>
+                </div>
+              </Group>
+            </td>
+            <td>
+              <Text size="sm">{props.company.companyPhone}</Text>
+            </td>
+            <td>
+              <Group spacing={0} position="right">
+                <ActionIcon>
+                  <IconPencil size={16} stroke={1.5} />
+                </ActionIcon>
+                <Menu transition="pop" withArrow position="bottom-end">
+                  <Menu.Target>
+                    <ActionIcon>
+                      <IconDots size={16} stroke={1.5} />
+                    </ActionIcon>
+                  </Menu.Target>
+                  <Menu.Dropdown>
+                    <Menu.Item icon={<IconMessages size={16} stroke={1.5} />}>Send message</Menu.Item>
+                    <Menu.Item icon={<IconNote size={16} stroke={1.5} />}>Add note</Menu.Item>
+                    <Menu.Item icon={<IconReportAnalytics size={16} stroke={1.5} />}>Analytics</Menu.Item>
+                    <Menu.Item icon={<IconTrash size={16} stroke={1.5} />} color="red">
+                      Terminate contract
+                    </Menu.Item>
+                  </Menu.Dropdown>
+                </Menu>
+              </Group>
+            </td>
+    </>
+  );
 }

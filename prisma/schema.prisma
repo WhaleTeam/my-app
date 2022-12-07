@@ -29,7 +29,8 @@ model App {
   appDescription        String
   appPlatform           String
   appVersion            String
-  companys              Company[]
+  companys              Company? @relation(fields: [companyId], references: [id])
+  companyId             String?
 }
 
 model Company {
@@ -39,8 +40,7 @@ model Company {
   companyPhone          String
   companyDescription    String
   companyRegisterDate   DateTime
-  app                   App @relation(fields: [appId], references: [id])
-  appId                 String
+  apps                  App[]
   contacs               Contact[]
 }
 

@@ -5,11 +5,7 @@ type Post = {
 export default function Blog(posts: Post[]) {
   return (
     <ul>
-      {
-        posts.map((post) => (
-          <li>{post.title}</li>
-        ))
-      }
+      
     </ul>
   )
 }

@@ -5,6 +5,10 @@ import AppCard from '../components/contact/appCard'
 
 const prisma = new PrismaClient()
 
+type initialAppType = {
+  initialApps: App[]
+}
+
 export async function getServerSideProps() {
   const apps: App[] = await prisma.app.findMany()
 
@@ -28,7 +32,7 @@ async function saveContact(app: Prisma.ContactCreateInput) {
   return await response.json()
 }
 
-export default function Apps({ initialApps }) {
+export default function Apps({ initialApps } : initialAppType) {
   const [apps, setApps] = useState<App[]>(initialApps)
   console.log(apps)
   

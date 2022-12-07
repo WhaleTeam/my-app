@@ -5,6 +5,11 @@ import ContactCard from '../components/contact/contactCard'
 
 const prisma = new PrismaClient()
 
+type initialContactsType = {
+  initialContacts: Contact[]
+}
+
+
 export async function getServerSideProps() {
   const contacts: Contact[] = await prisma.contact.findMany()
 
@@ -27,7 +32,7 @@ async function saveContact(contact: Prisma.ContactCreateInput) {
   return await response.json()
 }
 
-export default function Contacts({ initialContacts }) {
+export default function Contacts({ initialContacts } : initialContactsType) {
   const [contacts, setContacts] = useState<Contact[]>(initialContacts)
   console.log(contacts)
   
