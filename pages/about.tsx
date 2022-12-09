@@ -1,7 +1,5 @@
-import styles from '../styles/home.module.css'
-
 function About() {
-  return <div className={styles.container}>
+  return <div className='container'>
     <h1>About</h1>
   </div>
 }

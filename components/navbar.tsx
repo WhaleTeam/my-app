@@ -4,8 +4,8 @@ import styles from '../styles/Home.module.css'
 export default function Navbar() {
   return (
   <>
-  <div className={`${styles.navbar} flex justify-between mx-8 my-4 items-center`}>
-    <a href="#" className={styles.logo}>Dnn&lt;&#123;free&#125;/&gt;</a>
+  <div className='navbar flex justify-between mx-8 my-4 items-center'>
+    <a href="#" className='logo'>Dnn&lt;&#123;free&#125;/&gt;</a>
     <ul className='flex m-0 p-0 gap-5'>
       <li>
         <Link href="/">Home</Link>
