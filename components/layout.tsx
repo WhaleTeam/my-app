@@ -1,5 +1,5 @@
 import Head from "next/head"
-import React from "react"
+import React, { useState } from "react"
 import Footer from "./footer"
 import { HeaderMenu, HeaderSearchProps } from './header'
 
@@ -12,6 +12,8 @@ import {
   IconCoin,
   IconChevronDown,
 } from '@tabler/icons';
+import { AppShell, Navbar } from "@mantine/core";
+import Sidebar from "./sidebar";
 
 interface LayoutProps {
   children: React.ReactNode
@@ -24,11 +26,11 @@ export default function Layout({children}: LayoutProps) {
       label: 'Home'
     },
     { 
-      link: 'about', 
-      label: 'About'
+      link: 'mireaux', 
+      label: 'Mireaux'
     },
     {
-      link: 'javascript:;',
+      link: '#',
       label: 'Features',
       mega: [
         {
@@ -64,7 +66,7 @@ export default function Layout({children}: LayoutProps) {
       ]
     },
     {
-      link: 'javascript:;',
+      link: '#',
       label: 'Features 2',
       mega: [
         {
@@ -90,7 +92,7 @@ export default function Layout({children}: LayoutProps) {
       ]
     },
     { 
-      link: 'javascript:;', 
+      link: '#', 
       label: 'Applications',
       links:[
         { link: '/companys', label: 'Manage Company' },
@@ -98,7 +100,7 @@ export default function Layout({children}: LayoutProps) {
       ] 
     },
     { 
-      link: 'javascript:;', 
+      link: '#', 
       label: 'Help',
       links:[
         { link: '/prisma', label: 'Prisma' },
@@ -107,19 +109,19 @@ export default function Layout({children}: LayoutProps) {
     }
   ]
 
+  const [opened, setOpened] = useState(false)
+
   return (
     <>
-      <Head>
-        <title>Contacts App</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <link
-          href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
-          rel="stylesheet"
-        />
-      </Head>
-      <HeaderMenu links={links} />
+
+    <AppShell
+      padding="md"
+      navbar={<Sidebar opened={opened}/>}
+      header={<HeaderMenu opened={opened} setOpened={setOpened} links={links} />}
+    >
       <main>{children}</main>
       <Footer />
+    </AppShell>
     </>
   )
 }

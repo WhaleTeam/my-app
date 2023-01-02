@@ -1,12 +1,14 @@
 import { createStyles, Select, TextInput, Checkbox, Button, Group, Box } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import Input from './input';
-import InputSpacer from './inputSpacer';
+import Input from '../contact/input';
+import InputSpacer from '../contact/inputSpacer';
 import { DatePicker } from '@mantine/dates';
+import { App } from '@prisma/client';
 
 
 interface AddCompanyFormProps {
-  onSubmit: any
+  onSubmit: any,
+  apps: App[]
 }
 
 const useStyles = createStyles((theme) => ({
@@ -31,7 +33,8 @@ const useStyles = createStyles((theme) => ({
 
 export default function AddCompanyForm(props: AddCompanyFormProps){
   //const { register, handleSubmit, formState: {errors} } = useForm()
-  const { classes } = useStyles();  
+  const { classes } = useStyles();
+  console.log(props.apps)
   
   const form = useForm({
     initialValues: {
@@ -79,7 +82,7 @@ export default function AddCompanyForm(props: AddCompanyFormProps){
 
       <Select
         style={{ marginBottom: 10, zIndex: 2 }}
-        data={['clbc59zys0000cldog1jkzmty', 'clbda4l4o0000cltg3k1eiirb']}
+        data={props.apps.map((a) => a.appName)}
         {...form.getInputProps('appId')}
         placeholder="Pick one"
         label="Company App"

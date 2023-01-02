@@ -10,12 +10,14 @@ import { createStyles, Header, Menu, Group, Center, Burger, Container,
   Button,
   Drawer,
   ScrollArea,
-  Collapse
+  Collapse,
+  MediaQuery
  } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconChevronDown } from '@tabler/icons';
-//import { MantineLogo } from '@mantine/ds';
 import Link from 'next/link'
+import React, { useState } from 'react';
+import { Brand } from './_brand';
 
 const useStyles = createStyles((theme) => ({
   inner: {
@@ -135,23 +137,28 @@ export interface HeaderSearchProps {
       icon: any, 
       title: string, 
       description: string 
-    }[] }[];
+    }[] 
+  }[],
+  opened: boolean,
+  setOpened: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export function HeaderMenu({ links }: HeaderSearchProps) {
+export function HeaderMenu({ links, opened, setOpened }: HeaderSearchProps) {
+  //const [opened, setOpened] = useState(false);
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
   const { classes, theme } = useStyles();
 
   const items = links.map((link) => {
     const menuItems = link.links?.map((item) => (
-      <Menu.Item key={item.link} component="a" href={item.link}>{item.label}</Menu.Item>
+      // <Link href={item.link}>{item.label}</Link>
+      <Menu.Item key={item.link} component="div"><Link href={item.link}>{item.label}</Link></Menu.Item>
     ));
 
     if (menuItems) {
       return (
         <Menu key={link.label} trigger="hover" exitTransitionDuration={0}>
           <Menu.Target>
-            <a
+            <Link
               href={link.link}
               className={classes.link}
             >
@@ -159,7 +166,7 @@ export function HeaderMenu({ links }: HeaderSearchProps) {
                 <span className={classes.linkLabel}>{link.label}</span>
                 <IconChevronDown size={16} color={theme.fn.primaryColor()} />
               </Center>
-            </a>
+            </Link>
           </Menu.Target>
           <Menu.Dropdown>{menuItems}</Menu.Dropdown>
         </Menu>
@@ -186,16 +193,16 @@ export function HeaderMenu({ links }: HeaderSearchProps) {
 
     if (megaMenus) {
       return (
-        <HoverCard width={600} position="bottom" radius="md" shadow="md" withinPortal>
+        <HoverCard key={link.label} width={600} position="bottom" radius="md" shadow="md" withinPortal>
           <HoverCard.Target>
-            <a href="javascript:;" onClick={(event) => event.preventDefault()} className={classes.link}>
+            <Link href="#" onClick={(event) => event.preventDefault()} className={classes.link}>
               <Center inline>
                 <Box component="span" mr={5}>
                   {link.label}
                 </Box>
                 <IconChevronDown size={16} color={theme.fn.primaryColor()} />
               </Center>
-            </a>
+            </Link>
           </HoverCard.Target>
 
           <HoverCard.Dropdown sx={{ overflow: 'hidden' }}>
@@ -235,26 +242,27 @@ export function HeaderMenu({ links }: HeaderSearchProps) {
     }
 
     return (
-      <a
+      <Link
         key={link.label}
         href={link.link}
         className={classes.link}
       >
         {link.label}
-      </a>
+      </Link>
     );
   });
 
   const drawerLinks = links.map((link) => {
     const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
+    
     const menuItems = link.links?.map((item) => (
-      <a key={item.link} className={classes.link + ' ' + classes.childLink} href={item.link}>{item.label}</a>
+      <Link key={item.label} className={classes.link + ' ' + classes.childLink} href={item.link}>{item.label}</Link>
     ));
 
     if (menuItems) {
       return (
-        <>
-        <UnstyledButton className={classes.link} onClick={toggleLinks}>
+        <React.Fragment key={link.label}>
+        <UnstyledButton key={link.label} className={classes.link} onClick={toggleLinks}>
           <Center inline>
             <Box component="span" mr={5}>
               {link.label}
@@ -263,7 +271,7 @@ export function HeaderMenu({ links }: HeaderSearchProps) {
           </Center>
         </UnstyledButton>
         <Collapse in={linksOpened}>{menuItems}</Collapse>
-        </>
+        </React.Fragment>
       );
     }
 
@@ -287,8 +295,8 @@ export function HeaderMenu({ links }: HeaderSearchProps) {
 
     if (megaMenus) {
       return (
-        <>
-        <UnstyledButton className={classes.link} onClick={toggleLinks}>
+        <React.Fragment key={link.label}>
+        <UnstyledButton key={link.label} className={classes.link} onClick={toggleLinks}>
           <Center inline>
             <Box component="span" mr={5}>
               {link.label}
@@ -297,28 +305,36 @@ export function HeaderMenu({ links }: HeaderSearchProps) {
           </Center>
         </UnstyledButton>
         <Collapse in={linksOpened}>{megaMenus}</Collapse>
-        </>
+        </React.Fragment>
       )
     }
 
     return (
-      <a
+      <Link
         key={link.label}
         href={link.link}
         className={classes.link}
       >
         {link.label}
-      </a>
+      </Link>
     )
   })
 
   return (
     <Box>
-      <Header height={60}>
+      <Header height={61}>
         <Container maw='100%'>
           <div className={classes.inner}>
-            <a href="#" className='logo font-bold text-2xl'>Dnn&lt;&#123;free&#125;/&gt;</a>
-            {/* <MantineLogo size={28} /> */}
+            <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+              <Burger
+                opened={opened}
+                onClick={() => setOpened((o) => !o)}
+                size="sm"
+                color={theme.colors.gray[6]}
+                mr="xl"
+              />
+            </MediaQuery>
+            <Brand />
             <Group spacing={5} className={classes.links}>
               {items}
             </Group>
@@ -326,11 +342,12 @@ export function HeaderMenu({ links }: HeaderSearchProps) {
               <Button variant="default">Log in</Button>
               <Button>Sign up</Button>
             </Group>
-            <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.burger} />
+            <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.burger} size="sm" />
           </div>
         </Container>
       </Header>
       <Drawer
+          position={'right'}
           opened={drawerOpened}
           onClose={closeDrawer}
           size="100%"

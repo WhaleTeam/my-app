@@ -1,21 +1,24 @@
-import { PrismaClient, Company, Prisma } from '@prisma/client'
+import { PrismaClient, Company, App, Prisma } from '@prisma/client'
 import { useState } from 'react'
 import { Table, ActionIcon, Menu, ScrollArea } from '@mantine/core';
-import AddCompanyForm from '../components/contact/addCompanyForm'
-import CompanyCard from '../components/contact/companyCard'
+import AddCompanyForm from '../components/company/addCompanyForm'
+import CompanyCard from '../components/company/companyCard'
 
 const prisma = new PrismaClient()
 
 type initialCompanysType = {
-  initialCompanys: Company[]
+  initialCompanys: Company[],
+  apps: App[]
 }
 
 export async function getServerSideProps() {
   const companys: Company[] = await prisma.company.findMany()
+  const apps: App[] = await prisma.app.findMany();
   //console.log(JSON.stringify(companys));
   return {
     props: {
-      initialCompanys:JSON.parse(JSON.stringify(companys))
+      initialCompanys:JSON.parse(JSON.stringify(companys)),
+      apps: apps
     }
   }
 }
@@ -32,7 +35,7 @@ async function saveCompany(company: Prisma.CompanyCreateInput) {
   return await response.json()
 }
 
-export default function Companys({ initialCompanys } : initialCompanysType) {
+export default function Companys({ initialCompanys, apps } : initialCompanysType) {
   const [companys, setCompanys] = useState<Company[]>(initialCompanys)
   console.log(companys)
   
@@ -45,6 +48,7 @@ export default function Companys({ initialCompanys } : initialCompanysType) {
           </div>
         
           <AddCompanyForm
+          apps={apps}
           onSubmit={async (data: Company, e: { target: { reset: () => void } }) => {
 
             try {

@@ -1,0 +1,205 @@
+[
+  {
+    "name": "stagingwebqms",
+    "site": "https://staging.webqms.com/",
+    "db": "stagingwebqms",
+    "user": "erwinyulianto",
+    "pass": "Treeh@use05"
+  },
+  {
+    "name": "sandbox",
+    "site": "https://sandbox.webqms.com/",
+    "db": "sandbox.webqms.com",
+    "user": "erwinyulianto",
+    "pass": "Treeh@use05"
+  },
+  {
+    "name": "demo",
+    "site": "https://demo.webqms.com/",
+    "db": "demo.webqms.com",
+    "user": "erwinyulianto",
+    "pass": "Treeh@use05"
+  },
+  {
+    "name": "mireauxms",
+    "site": "https://mireauxms.webqms.com/",
+    "db": "mireauxms.webqms.com",
+    "user": "erwinyulianto",
+    "pass": "Treeh@use05"
+  },
+  {
+    "name": "airdrilling",
+    "site": "https://airdrilling.webqms.com/",
+    "db": "airdrilling.webqms.com"
+  },
+  {
+    "name": "aldinger",
+    "site": "https://aldinger.webqms.com/",
+    "db": "aldinger.webqms.com"
+  },
+  {
+    "name": "altitude",
+    "site": "https://altitude-ep.webqms.com/",
+    "db": "altitudewebqms"
+  },
+  {
+    "name": "aramcowebbasedqms",
+    "site": "https://demd.webbasedqms.com/",
+    "db": "aramcowebbasedqms"
+  },  
+  {
+    "name": "bergstromnutrition",
+    "site": "https://bergstromnutrition.webqms.com/",
+    "db": "bergstromnutrition.webqms.com"
+  },
+  {
+    "name": "qmsbroadheadmw",
+    "site": "https://broadheadmw.webqms.com/",
+    "db": "qmsbroadheadmw"
+  },
+  {
+    "name": "chemjet",
+    "site": "https://chemjet.webqms.com/",
+    "db": "chemjet.webqms.com"
+  },
+  {
+    "name": "cncmfg",
+    "site": "https://cncmfg.webqms.com/",
+    "db": "cncmfg.webqms.com"
+  },
+  {
+    "name": "faithmfg",
+    "site": "https://faithmfg.webqms.com/",
+    "db": "faithmfg.webqms.com"
+  },
+  {
+    "name": "federalflange",
+    "site": "https://federalflange.webqms.com/",
+    "db": "federalflange.webqms.com"
+  },
+  {
+    "name": "flyaeroguard",
+    "site": "https://flyaeroguard.webqms.com/",
+    "db": "flyaeroguard.webqms.com"
+  },
+  {
+    "name": "forgedcomponents",
+    "site": "https://forgedcomponents.webqms.com/",
+    "db": "forgedcomponents.webqms.com"
+  },
+  {
+    "name": "gaylordchem",
+    "site": "https://gaylordchem.webqms.com/",
+    "db": "gaylordchem.webqms.com"
+  },
+  {
+    "name": "gulfcontrols",
+    "site": "https://gulfcontrols.webqms.com/",
+    "db": "gulfcontrols.webqms.com"
+  },
+  {
+    "name": "hydraquip",
+    "site": "https://hydraquip.webqms.com/",
+    "db": "hydraquip.webqms.com"
+  },
+  {
+    "name": "jtlogistics",
+    "site": "https://jtlogistics.webqms.com/",
+    "db": "jtlogistics.webqms.com"
+  },
+  {
+    "name": "qmsknoxbox",
+    "site": "https://knoxbox.webqms.com/",
+    "db": "qmsknoxbox"
+  },
+  {
+    "name": "ksubsea",
+    "site": "https://ksubsea.webqms.com/",
+    "db": "ksubsea.webqms.com"
+  },
+  {
+    "name": "mdswebqmscom",
+    "site": "https://mds.webqms.com/",
+    "db": "mdswebqmscom"
+  },
+  {
+    "name": "michelswebqms",
+    "site": "https://michels.webqms.com/",
+    "db": "michelswebqms"
+  },
+  {
+    "name": "milspecworks",
+    "site": "https://ksubsea.webqms.com/",
+    "db": "milspecworks.webqms.com"
+  },
+  {
+    "name": "morrisonenergywebqms",
+    "site": "https://morrisonenergy.webqms.com/",
+    "db": "morrisonenergywebqms"
+  },
+  {
+    "name": "nissanchem-usa",
+    "site": "https://nissanchem-usa.webqms.com/",
+    "db": "nissanchem-usa.webqms.com"
+  },
+  {
+    "name": "nscontrols",
+    "site": "https://nscontrols.webqms.com/",
+    "db": "nscontrols.webqms.com"
+  },
+  {
+    "name": "precisionscale",
+    "site": "https://precisionscale.webqms.com/",
+    "db": "precisionscale.webqms.com"
+  },
+  {
+    "name": "pvfluid",
+    "site": "https://pvfluid.webqms.com/",
+    "db": "pvfluid.webqms.com"
+  },
+  {
+    "name": "sphikreuzsubsea",
+    "site": "https://sphiksb.webqms.com/",
+    "db": "sphikreuzsubsea.webqms.com"
+  },
+  {
+    "name": "supremeintegratedtechnology",
+    "site": "https://sphiksb.webqms.com/",
+    "db": "supremeintegratedtechnology.webqms.com"
+  },
+  {
+    "name": "stasisdrillingwebqms",
+    "site": "https://stasisdrilling.webqms.com/",
+    "db": "stasisdrillingwebqms"
+  },
+  {
+    "name": "qmsusrodqo",
+    "site": "https://usrodco.webqms.com/",
+    "db": "qmsusrodqo"
+  },
+  {
+    "name": "wyoben",
+    "site": "https://wyoben.webqms.com/",
+    "db": "wyoben.webqms.com"
+  },
+  {
+    "name": "",
+    "site": "",
+    "db": "elitecontrols.webqms.com"
+  },
+  {
+    "name": "",
+    "site": "",
+    "db": "esgqmstetratec"
+  },
+  {
+    "name": "",
+    "site": "",
+    "db": "sandbox.webqmsplus.com"
+  },
+  {
+    "name": "",
+    "site": "",
+    "db": "soteriaus.webqms.com"
+  }
+]

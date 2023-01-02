@@ -73,3 +73,8 @@ model ScheduleLogs {
   task                  ScheduleTask @relation(fields: [taskId], references: [id])
   taskId                String
 }
+
+model Notes {
+  id    String @id @default(cuid())
+  note  String
+}

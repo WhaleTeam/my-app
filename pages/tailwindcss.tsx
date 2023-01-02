@@ -293,7 +293,7 @@ export default function TailwindCSS() {
           <C_H1>TYPOGRAPHY</C_H1>
           <C_H2>Font Family</C_H2>
           <p>
-            .font[sans|serif|mono]
+            .font-[sans|serif|mono]
           </p>
           <C_H2>Font Size</C_H2>
           <p>
