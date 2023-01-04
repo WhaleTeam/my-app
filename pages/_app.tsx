@@ -7,8 +7,9 @@ import { NotificationsProvider } from '@mantine/notifications'
 import { ModalsProvider } from '@mantine/modals';
 import { RouterTransition } from '../components/routerTransition'
 import { useState } from 'react'
+import { SessionProvider } from 'next-auth/react'
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps: { session, ...pageProps }}: AppProps) {
   const [colorScheme, setColorScheme] = useState<ColorScheme>('light');
   const toggleColorScheme = (value?: ColorScheme) =>
     setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
@@ -20,18 +21,20 @@ export default function App({ Component, pageProps }: AppProps) {
       <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
     </Head>
 
-    <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
-      <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
-        <RouterTransition />
-        <NotificationsProvider position="top-right" zIndex={2077}>
-        <ModalsProvider>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </ModalsProvider>
-        </NotificationsProvider>
-      </MantineProvider>
-    </ColorSchemeProvider>
+    <SessionProvider session={session}>
+      <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
+        <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
+          <RouterTransition />
+          <NotificationsProvider position="top-right" zIndex={2077}>
+          <ModalsProvider>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </ModalsProvider>
+          </NotificationsProvider>
+        </MantineProvider>
+      </ColorSchemeProvider>
+    </SessionProvider>
     </>
   )
 }

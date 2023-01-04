@@ -18,6 +18,8 @@ import { IconChevronDown } from '@tabler/icons';
 import Link from 'next/link'
 import React, { useState } from 'react';
 import { Brand } from './_brand';
+import { useSession, signIn, signOut } from "next-auth/react"
+import SignInOut from './_signInOutButton';
 
 const useStyles = createStyles((theme) => ({
   inner: {
@@ -144,6 +146,8 @@ export interface HeaderSearchProps {
 }
 
 export function HeaderMenu({ links, opened, setOpened }: HeaderSearchProps) {
+  const { data: session } = useSession()
+  
   //const [opened, setOpened] = useState(false);
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
   const { classes, theme } = useStyles();
@@ -339,8 +343,7 @@ export function HeaderMenu({ links, opened, setOpened }: HeaderSearchProps) {
               {items}
             </Group>
             <Group className={classes.hiddenMobile}>
-              <Button variant="default">Log in</Button>
-              <Button>Sign up</Button>
+              <SignInOut />
             </Group>
             <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.burger} size="sm" />
           </div>
@@ -363,7 +366,20 @@ export function HeaderMenu({ links, opened, setOpened }: HeaderSearchProps) {
             <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
 
             <Group position="center" grow pb="xl" px="md">
+              <Link href='/api/auth/signin'>
+                <a onClick={e => {
+                  e.preventDefault()
+                  signIn()
+                }}>Sign In</a>
+              </Link>
+              <Link href='/api/auth/signout'>
+                <a onClick={e => {
+                  e.preventDefault()
+                  signOut()
+                }}>Sign Out</a>
+              </Link>
               <Button variant="default">Log in</Button>
+              <Button>Sign out</Button>
               <Button>Sign up</Button>
             </Group>
           </ScrollArea>

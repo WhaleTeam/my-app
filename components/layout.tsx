@@ -12,14 +12,19 @@ import {
   IconCoin,
   IconChevronDown,
 } from '@tabler/icons';
-import { AppShell, Navbar } from "@mantine/core";
+import { AppShell, Button, Center, Group, Navbar } from "@mantine/core";
 import Sidebar from "./sidebar";
+import { signIn, useSession } from "next-auth/react";
+import { Brand } from "./_brand";
+import SignInOut from "./_signInOutButton";
 
 interface LayoutProps {
   children: React.ReactNode
 }
 
 export default function Layout({children}: LayoutProps) {
+  const { data: session } = useSession()
+
   const links: HeaderSearchProps = [
     { 
       link: '/', 
@@ -97,6 +102,7 @@ export default function Layout({children}: LayoutProps) {
       links:[
         { link: '/companys', label: 'Manage Company' },
         { link: '/contacts', label: 'Manage Contact' },
+        { link: '/datatable', label: 'DataTables' },
       ] 
     },
     { 
@@ -106,14 +112,36 @@ export default function Layout({children}: LayoutProps) {
         { link: '/prisma', label: 'Prisma' },
         { link: '/tailwindcss', label: 'Tailwind CSS' },
       ] 
+    },
+    { 
+      link: '#', 
+      label: 'AJI',
+      links:[
+        { link: '/aji 1', label: 'Aji 1' },
+        { link: '/aji 2', label: 'Aji 2' },
+      ] 
     }
   ]
 
   const [opened, setOpened] = useState(false)
 
+  if (!session) {
+    return (
+      <Center style={{ width: '100vw', height: '100vh' }}>
+        <div>
+        <Group position="center" className="mb-5">
+          <Brand />
+        </Group>
+        <Group position="center">
+          <SignInOut />
+        </Group>
+        </div>
+      </Center>
+    )
+  }
+
   return (
     <>
-
     <AppShell
       padding="md"
       navbar={<Sidebar opened={opened}/>}
